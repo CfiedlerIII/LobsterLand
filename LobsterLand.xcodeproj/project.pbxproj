@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D908F612CDEBAA1005BC3CA /* LobsterLandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F602CDEBAA1005BC3CA /* LobsterLandApp.swift */; };
+		1D908F612CDEBAA1005BC3CA /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F602CDEBAA1005BC3CA /* MainApp.swift */; };
 		1D908F632CDEBAA1005BC3CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F622CDEBAA1005BC3CA /* ContentView.swift */; };
 		1D908F652CDEBAA2005BC3CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D908F642CDEBAA2005BC3CA /* Assets.xcassets */; };
 		1D908F682CDEBAA2005BC3CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D908F672CDEBAA2005BC3CA /* Preview Assets.xcassets */; };
@@ -36,7 +36,7 @@
 
 /* Begin PBXFileReference section */
 		1D908F5D2CDEBAA1005BC3CA /* LobsterLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LobsterLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D908F602CDEBAA1005BC3CA /* LobsterLandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobsterLandApp.swift; sourceTree = "<group>"; };
+		1D908F602CDEBAA1005BC3CA /* MainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
 		1D908F622CDEBAA1005BC3CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1D908F642CDEBAA2005BC3CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D908F672CDEBAA2005BC3CA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		1D908F5F2CDEBAA1005BC3CA /* LobsterLand */ = {
 			isa = PBXGroup;
 			children = (
-				1D908F602CDEBAA1005BC3CA /* LobsterLandApp.swift */,
+				1D908F602CDEBAA1005BC3CA /* MainApp.swift */,
 				1D908F622CDEBAA1005BC3CA /* ContentView.swift */,
 				1D908F642CDEBAA2005BC3CA /* Assets.xcassets */,
 				1D908F662CDEBAA2005BC3CA /* Preview Content */,
@@ -266,7 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D908F632CDEBAA1005BC3CA /* ContentView.swift in Sources */,
-				1D908F612CDEBAA1005BC3CA /* LobsterLandApp.swift in Sources */,
+				1D908F612CDEBAA1005BC3CA /* MainApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
