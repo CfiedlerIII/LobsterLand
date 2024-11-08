@@ -6,19 +6,24 @@
 //
 
 import SwiftUI
+import ArcGIS
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+
+  @State private var map = {
+    let map = Map(basemapStyle: .arcGISTopographic)
+    map.initialViewpoint = Viewpoint(latitude: 34.02700, longitude: -118.80500, scale: 72_000)
+    return map
+  }()
+
+  var body: some View {
+    VStack {
+      MapView(map: map)
+        .ignoresSafeArea()
     }
+  }
 }
 
 #Preview {
-    ContentView()
+  ContentView()
 }

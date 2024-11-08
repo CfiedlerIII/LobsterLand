@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D908F612CDEBAA1005BC3CA /* LobsterLandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F602CDEBAA1005BC3CA /* LobsterLandApp.swift */; };
+		1D908F612CDEBAA1005BC3CA /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F602CDEBAA1005BC3CA /* MainApp.swift */; };
 		1D908F632CDEBAA1005BC3CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F622CDEBAA1005BC3CA /* ContentView.swift */; };
 		1D908F652CDEBAA2005BC3CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D908F642CDEBAA2005BC3CA /* Assets.xcassets */; };
 		1D908F682CDEBAA2005BC3CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D908F672CDEBAA2005BC3CA /* Preview Assets.xcassets */; };
 		1D908F722CDEBAA2005BC3CA /* LobsterLandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F712CDEBAA2005BC3CA /* LobsterLandTests.swift */; };
 		1D908F7C2CDEBAA2005BC3CA /* LobsterLandUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F7B2CDEBAA2005BC3CA /* LobsterLandUITests.swift */; };
 		1D908F7E2CDEBAA2005BC3CA /* LobsterLandUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F7D2CDEBAA2005BC3CA /* LobsterLandUITestsLaunchTests.swift */; };
+		1D908F8C2CDEBF03005BC3CA /* ArcGIS in Frameworks */ = {isa = PBXBuildFile; productRef = 1D908F8B2CDEBF03005BC3CA /* ArcGIS */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +36,7 @@
 
 /* Begin PBXFileReference section */
 		1D908F5D2CDEBAA1005BC3CA /* LobsterLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LobsterLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D908F602CDEBAA1005BC3CA /* LobsterLandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobsterLandApp.swift; sourceTree = "<group>"; };
+		1D908F602CDEBAA1005BC3CA /* MainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
 		1D908F622CDEBAA1005BC3CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1D908F642CDEBAA2005BC3CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D908F672CDEBAA2005BC3CA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -51,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D908F8C2CDEBF03005BC3CA /* ArcGIS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +96,7 @@
 		1D908F5F2CDEBAA1005BC3CA /* LobsterLand */ = {
 			isa = PBXGroup;
 			children = (
-				1D908F602CDEBAA1005BC3CA /* LobsterLandApp.swift */,
+				1D908F602CDEBAA1005BC3CA /* MainApp.swift */,
 				1D908F622CDEBAA1005BC3CA /* ContentView.swift */,
 				1D908F642CDEBAA2005BC3CA /* Assets.xcassets */,
 				1D908F662CDEBAA2005BC3CA /* Preview Content */,
@@ -143,6 +145,9 @@
 			dependencies = (
 			);
 			name = LobsterLand;
+			packageProductDependencies = (
+				1D908F8B2CDEBF03005BC3CA /* ArcGIS */,
+			);
 			productName = LobsterLand;
 			productReference = 1D908F5D2CDEBAA1005BC3CA /* LobsterLand.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +220,9 @@
 				Base,
 			);
 			mainGroup = 1D908F542CDEBAA1005BC3CA;
+			packageReferences = (
+				1D908F8A2CDEBF03005BC3CA /* XCRemoteSwiftPackageReference "arcgis-maps-sdk-swift" */,
+			);
 			productRefGroup = 1D908F5E2CDEBAA1005BC3CA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -258,7 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D908F632CDEBAA1005BC3CA /* ContentView.swift in Sources */,
-				1D908F612CDEBAA1005BC3CA /* LobsterLandApp.swift in Sources */,
+				1D908F612CDEBAA1005BC3CA /* MainApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +596,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1D908F8A2CDEBF03005BC3CA /* XCRemoteSwiftPackageReference "arcgis-maps-sdk-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Esri/arcgis-maps-sdk-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 200.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1D908F8B2CDEBF03005BC3CA /* ArcGIS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D908F8A2CDEBF03005BC3CA /* XCRemoteSwiftPackageReference "arcgis-maps-sdk-swift" */;
+			productName = ArcGIS;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1D908F552CDEBAA1005BC3CA /* Project object */;
 }
