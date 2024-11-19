@@ -15,13 +15,13 @@ struct ExploreMaineView: View {
     NavigationStack {
       List {
         Section(content: {
-
+          ExplorerRowView(viewModel: MaineExplorerRowViewModel(mapItem: viewModel.map.item))
         }, header: {
           Text("Web Map")
         })
         Section(content: {
           ForEach(viewModel.mapAreas, id: \.portalItem.id) { area in
-            ExplorerRowView(viewModel: .init(mapArea: area))
+            ExplorerRowView(viewModel: ExplorerRowViewModel(mapArea: area))
           }
         }, header: {
           Text("Map Areas")
@@ -31,8 +31,9 @@ struct ExploreMaineView: View {
       .task {
         await handleMapLoad()
       }
+      .navigationTitle("Explore Maine")
+      .navigationBarTitleDisplayMode(.inline)
     }
-    .navigationTitle("Explore Maine")
   }
 
   func handleMapLoad() async {

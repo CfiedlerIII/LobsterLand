@@ -19,6 +19,8 @@
 		1D908F9E2CEC1697005BC3CA /* Justify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F9D2CEC1697005BC3CA /* Justify.swift */; };
 		1D908FA22CEC19F6005BC3CA /* ExploreMaineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908FA12CEC19F6005BC3CA /* ExploreMaineViewModel.swift */; };
 		1D908FA42CEC1A2D005BC3CA /* ExplorerRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908FA32CEC1A2D005BC3CA /* ExplorerRowViewModel.swift */; };
+		1D908FA72CEC2045005BC3CA /* MaineExplorerRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908FA62CEC2045005BC3CA /* MaineExplorerRowViewModel.swift */; };
+		1D908FA92CEC231F005BC3CA /* ExplorerViewModelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908FA82CEC231F005BC3CA /* ExplorerViewModelable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		1D908F9D2CEC1697005BC3CA /* Justify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Justify.swift; sourceTree = "<group>"; };
 		1D908FA12CEC19F6005BC3CA /* ExploreMaineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreMaineViewModel.swift; sourceTree = "<group>"; };
 		1D908FA32CEC1A2D005BC3CA /* ExplorerRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerRowViewModel.swift; sourceTree = "<group>"; };
+		1D908FA62CEC2045005BC3CA /* MaineExplorerRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaineExplorerRowViewModel.swift; sourceTree = "<group>"; };
+		1D908FA82CEC231F005BC3CA /* ExplorerViewModelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerViewModelable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +165,8 @@
 			children = (
 				1D908F992CEAAEF8005BC3CA /* ExplorerRowView.swift */,
 				1D908FA32CEC1A2D005BC3CA /* ExplorerRowViewModel.swift */,
+				1D908FA62CEC2045005BC3CA /* MaineExplorerRowViewModel.swift */,
+				1D908FA82CEC231F005BC3CA /* ExplorerViewModelable.swift */,
 			);
 			path = ExplorerRowView;
 			sourceTree = "<group>";
@@ -314,7 +320,9 @@
 				1D908FA22CEC19F6005BC3CA /* ExploreMaineViewModel.swift in Sources */,
 				1D908FA42CEC1A2D005BC3CA /* ExplorerRowViewModel.swift in Sources */,
 				1D908F9A2CEAAEF8005BC3CA /* ExplorerRowView.swift in Sources */,
+				1D908FA72CEC2045005BC3CA /* MaineExplorerRowViewModel.swift in Sources */,
 				1D908F612CDEBAA1005BC3CA /* MainApp.swift in Sources */,
+				1D908FA92CEC231F005BC3CA /* ExplorerViewModelable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,8 +8,8 @@
 import SwiftUI
 import ArcGIS
 
-struct ExplorerRowView: View {
-  @ObservedObject var viewModel: ExplorerRowViewModel
+struct ExplorerRowView<ViewModel>: View where ViewModel: ExplorerViewModelable {
+  @ObservedObject var viewModel: ViewModel
 
   var body: some View {
     GeometryReader { geom in
@@ -45,8 +45,10 @@ struct ExplorerRowView_Previews: PreviewProvider {
 
   static var previews: some View {
     ExplorerRowView(
-      viewModel: .init(
-        mapArea: .init(portalItem: item)
+      viewModel: ExplorerRowViewModel(
+        mapArea: .init(
+          portalItem: item
+        )
       )
     )
   }

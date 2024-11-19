@@ -8,7 +8,8 @@
 import SwiftUI
 import ArcGIS
 
-class ExplorerRowViewModel: ObservableObject {
+class ExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
+
   var mapArea: PreplannedMapArea
   @Published var title: String?
   @Published var description: String?
