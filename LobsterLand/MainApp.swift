@@ -17,7 +17,7 @@ struct MainApp: App {
 
   var body: some SwiftUI.Scene {
         WindowGroup {
-            ContentView()
+          ExploreMaineView()
             .ignoresSafeArea()
         }
     }
