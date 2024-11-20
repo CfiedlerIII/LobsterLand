@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D8FF91E2CEE58260072DB3D /* ArcGIS in Frameworks */ = {isa = PBXBuildFile; productRef = 1D8FF91D2CEE58260072DB3D /* ArcGIS */; };
-		1D8FF9202CEE58D80072DB3D /* ExplorerMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8FF91F2CEE58D80072DB3D /* ExplorerMapView.swift */; };
 		1D908F612CDEBAA1005BC3CA /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F602CDEBAA1005BC3CA /* MainApp.swift */; };
 		1D908F652CDEBAA2005BC3CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D908F642CDEBAA2005BC3CA /* Assets.xcassets */; };
 		1D908F682CDEBAA2005BC3CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D908F672CDEBAA2005BC3CA /* Preview Assets.xcassets */; };
 		1D908F722CDEBAA2005BC3CA /* LobsterLandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F712CDEBAA2005BC3CA /* LobsterLandTests.swift */; };
 		1D908F7C2CDEBAA2005BC3CA /* LobsterLandUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F7B2CDEBAA2005BC3CA /* LobsterLandUITests.swift */; };
 		1D908F7E2CDEBAA2005BC3CA /* LobsterLandUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F7D2CDEBAA2005BC3CA /* LobsterLandUITestsLaunchTests.swift */; };
+		1D908F8C2CDEBF03005BC3CA /* ArcGIS in Frameworks */ = {isa = PBXBuildFile; productRef = 1D908F8B2CDEBF03005BC3CA /* ArcGIS */; };
 		1D908F8F2CE3ABB9005BC3CA /* ExploreMaineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F8E2CE3ABB9005BC3CA /* ExploreMaineView.swift */; };
 		1D908F9A2CEAAEF8005BC3CA /* ExplorerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F992CEAAEF8005BC3CA /* ExplorerRowView.swift */; };
 		1D908F9E2CEC1697005BC3CA /* Justify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F9D2CEC1697005BC3CA /* Justify.swift */; };
@@ -22,6 +21,8 @@
 		1D908FA42CEC1A2D005BC3CA /* ExplorerRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908FA32CEC1A2D005BC3CA /* ExplorerRowViewModel.swift */; };
 		1D908FA72CEC2045005BC3CA /* MaineExplorerRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908FA62CEC2045005BC3CA /* MaineExplorerRowViewModel.swift */; };
 		1D908FA92CEC231F005BC3CA /* ExplorerViewModelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908FA82CEC231F005BC3CA /* ExplorerViewModelable.swift */; };
+		1D908FAB2CEC4FDB005BC3CA /* MapStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908FAA2CEC4FDB005BC3CA /* MapStorageService.swift */; };
+		1D908FAD2CED1166005BC3CA /* ExplorerMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908FAC2CED1166005BC3CA /* ExplorerMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1D8FF91F2CEE58D80072DB3D /* ExplorerMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerMapView.swift; sourceTree = "<group>"; };
 		1D908F5D2CDEBAA1005BC3CA /* LobsterLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LobsterLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D908F602CDEBAA1005BC3CA /* MainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
 		1D908F642CDEBAA2005BC3CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,6 +59,8 @@
 		1D908FA32CEC1A2D005BC3CA /* ExplorerRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerRowViewModel.swift; sourceTree = "<group>"; };
 		1D908FA62CEC2045005BC3CA /* MaineExplorerRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaineExplorerRowViewModel.swift; sourceTree = "<group>"; };
 		1D908FA82CEC231F005BC3CA /* ExplorerViewModelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerViewModelable.swift; sourceTree = "<group>"; };
+		1D908FAA2CEC4FDB005BC3CA /* MapStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapStorageService.swift; sourceTree = "<group>"; };
+		1D908FAC2CED1166005BC3CA /* ExplorerMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D8FF91E2CEE58260072DB3D /* ArcGIS in Frameworks */,
+				1D908F8C2CDEBF03005BC3CA /* ArcGIS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,8 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				1D908F602CDEBAA1005BC3CA /* MainApp.swift */,
+				1D908FAA2CEC4FDB005BC3CA /* MapStorageService.swift */,
 				1D908F642CDEBAA2005BC3CA /* Assets.xcassets */,
-				1D8FF91F2CEE58D80072DB3D /* ExplorerMapView.swift */,
 				1D908F9F2CEC19A3005BC3CA /* Explorer */,
 				1D908FA52CEC1A43005BC3CA /* ViewModifiers */,
 				1D908F662CDEBAA2005BC3CA /* Preview Content */,
@@ -157,6 +159,7 @@
 		1D908F9F2CEC19A3005BC3CA /* Explorer */ = {
 			isa = PBXGroup;
 			children = (
+				1D908FAC2CED1166005BC3CA /* ExplorerMapView.swift */,
 				1D908FA02CEC19BF005BC3CA /* ExplorerRowView */,
 				1D908F8D2CE3ABA1005BC3CA /* ExploreMaineView */,
 			);
@@ -199,7 +202,7 @@
 			);
 			name = LobsterLand;
 			packageProductDependencies = (
-				1D8FF91D2CEE58260072DB3D /* ArcGIS */,
+				1D908F8B2CDEBF03005BC3CA /* ArcGIS */,
 			);
 			productName = LobsterLand;
 			productReference = 1D908F5D2CDEBAA1005BC3CA /* LobsterLand.app */;
@@ -274,7 +277,7 @@
 			);
 			mainGroup = 1D908F542CDEBAA1005BC3CA;
 			packageReferences = (
-				1D8FF91C2CEE58260072DB3D /* XCRemoteSwiftPackageReference "arcgis-maps-sdk-swift" */,
+				1D908F8A2CDEBF03005BC3CA /* XCRemoteSwiftPackageReference "arcgis-maps-sdk-swift" */,
 			);
 			productRefGroup = 1D908F5E2CDEBAA1005BC3CA /* Products */;
 			projectDirPath = "";
@@ -320,11 +323,12 @@
 			files = (
 				1D908F8F2CE3ABB9005BC3CA /* ExploreMaineView.swift in Sources */,
 				1D908F9E2CEC1697005BC3CA /* Justify.swift in Sources */,
+				1D908FAD2CED1166005BC3CA /* ExplorerMapView.swift in Sources */,
 				1D908FA22CEC19F6005BC3CA /* ExploreMaineViewModel.swift in Sources */,
 				1D908FA42CEC1A2D005BC3CA /* ExplorerRowViewModel.swift in Sources */,
+				1D908FAB2CEC4FDB005BC3CA /* MapStorageService.swift in Sources */,
 				1D908F9A2CEAAEF8005BC3CA /* ExplorerRowView.swift in Sources */,
 				1D908FA72CEC2045005BC3CA /* MaineExplorerRowViewModel.swift in Sources */,
-				1D8FF9202CEE58D80072DB3D /* ExplorerMapView.swift in Sources */,
 				1D908F612CDEBAA1005BC3CA /* MainApp.swift in Sources */,
 				1D908FA92CEC231F005BC3CA /* ExplorerViewModelable.swift in Sources */,
 			);
@@ -498,6 +502,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -527,6 +532,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -658,7 +664,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1D8FF91C2CEE58260072DB3D /* XCRemoteSwiftPackageReference "arcgis-maps-sdk-swift" */ = {
+		1D908F8A2CDEBF03005BC3CA /* XCRemoteSwiftPackageReference "arcgis-maps-sdk-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Esri/arcgis-maps-sdk-swift";
 			requirement = {
@@ -669,9 +675,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1D8FF91D2CEE58260072DB3D /* ArcGIS */ = {
+		1D908F8B2CDEBF03005BC3CA /* ArcGIS */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1D8FF91C2CEE58260072DB3D /* XCRemoteSwiftPackageReference "arcgis-maps-sdk-swift" */;
+			package = 1D908F8A2CDEBF03005BC3CA /* XCRemoteSwiftPackageReference "arcgis-maps-sdk-swift" */;
 			productName = ArcGIS;
 		};
 /* End XCSwiftPackageProductDependency section */

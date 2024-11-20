@@ -7,25 +7,55 @@
 
 import SwiftUI
 import ArcGIS
+import Network
 
 class ExploreMaineViewModel: ObservableObject {
   @Published var map: Map
   @Published var mapAreas: [PreplannedMapArea] = []
+  var offlineMapTask: OfflineMapTask?
+  var basemapURL: URL?
+  var portalItem: PortalItem
+  private var monitor = NWPathMonitor()
 
   init() {
     let itemID = Item.ID("3bc3179f17da44a0ac0bfdac4ad15664")!
     let item = PortalItem(portal: .arcGISOnline(connection: .anonymous), id: itemID)
+    self.portalItem = item
     self.map = Map(item: item)
+    monitor.pathUpdateHandler = { path in
+      if path.status == .satisfied {
+        print("Internet connection is available.")
+        // Perform actions when internet is available
+        Task {
+          await self.fetchPreplannedAreas(map: self.map)
+        }
+      } else {
+        print("Internet connection is not available.")
+        // Perform actions when internet is not available
+        self.offlineMapTask?.cancelLoad()
+        Task {
+          await self.fetchDownloadedAreas(map: self.map)
+        }
+      }
+    }
+    let queue = DispatchQueue(label: "NetworkMonitor")
+    monitor.start(queue: queue)
   }
 
   @MainActor
   func fetchPreplannedAreas(map: Map) async {
-    let offlineMapTask = OfflineMapTask(onlineMap: map)
+    self.offlineMapTask = OfflineMapTask(onlineMap: map)
     do {
-      let areas = try await offlineMapTask.preplannedMapAreas
-      self.mapAreas = areas
+      let areas = try await offlineMapTask?.preplannedMapAreas
+      self.mapAreas = areas ?? []
+      self.basemapURL = map.url
     } catch {
-      print("Error: \(error)")
+      print("Error 12: \(error)")
     }
+  }
+
+  @MainActor
+  func fetchDownloadedAreas(map: Map) async {
+    self.mapAreas = MapStorageService.shared.fetchAllMetaData(portal: .arcGISOnline(connection: .anonymous))
   }
 }
