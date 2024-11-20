@@ -9,17 +9,31 @@ import SwiftUI
 import ArcGIS
 
 class MaineExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
+
   var mapItem: Item?
+  var isLoading: Bool = false
+  var parentMapItem: PortalItem
   @Published var map: Map?
   @Published var title: String?
   @Published var description: String?
   @Published var thumbnailURL: URL?
 
-  init(map : Map? = nil, mapItem: Item?) {
+  init(map: Map? = nil, mapItem: Item?, parentMapItem: PortalItem) {
     self.map = map
     self.mapItem = mapItem
     self.title = mapItem?.title
     self.description = mapItem?.snippet
     self.thumbnailURL = mapItem?.thumbnail?.url
+    self.parentMapItem = parentMapItem
   }
+
+  func downloadOfflineMap() {}
+  func downloadedDataExists() -> Bool {
+    return false
+  }
+  func removeDownloadedArea() {}
+  func getDownloadedMapURL() -> URL? {
+    return nil
+  }
+  func makeMobileMapPackage(offlineMapURL: URL) {}
 }

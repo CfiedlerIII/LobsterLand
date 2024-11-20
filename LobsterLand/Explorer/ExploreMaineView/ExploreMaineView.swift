@@ -18,8 +18,10 @@ struct ExploreMaineView: View {
           ExplorerRowView(
             viewModel: MaineExplorerRowViewModel(
               map: viewModel.map,
-              mapItem: viewModel.map.item
-            )
+              mapItem: viewModel.map.item,
+              parentMapItem: viewModel.portalItem
+            ),
+            canDownload: false
           )
         }, header: {
           Text("Web Map")
@@ -28,7 +30,10 @@ struct ExploreMaineView: View {
           ForEach(viewModel.mapAreas, id: \.portalItem.id) { area in
             ExplorerRowView(
               viewModel: ExplorerRowViewModel(
-                mapArea: area
+                mapArea: area,
+                parentMapItem: viewModel.portalItem,
+                offlineMapTask: viewModel.offlineMapTask,
+                mapURL: viewModel.basemapURL
               )
             )
           }
@@ -55,7 +60,7 @@ struct ExploreMaineView: View {
         do {
           try await viewModel.map.retryLoad()
         } catch {
-          print("Error: \(error)")
+          print("Error 11: \(error)")
         }
       }
     }
