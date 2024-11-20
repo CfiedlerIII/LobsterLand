@@ -50,7 +50,7 @@ class ExploreMaineViewModel: ObservableObject {
       self.mapAreas = areas ?? []
       self.basemapURL = map.url
     } catch {
-      print("Error 12: \(error)")
+      print("Error 0x07: \(error)")
     }
   }
 
@@ -63,14 +63,14 @@ class ExploreMaineViewModel: ObservableObject {
   func handleMapLoad() async {
     for await loadStatus in map.$loadStatus {
       if loadStatus == .loaded {
-        Task { @MainActor in
+        Task {
           await fetchPreplannedAreas(map: map)
         }
       } else if loadStatus != .loading {
         do {
           try await map.retryLoad()
         } catch {
-          print("Error 0x0000: \(error)")
+          print("Error 0x08: \(error)")
         }
       }
     }
