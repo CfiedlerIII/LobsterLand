@@ -11,12 +11,14 @@ import ArcGIS
 class MaineExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
 
   var mapItem: Item?
+  var isOnline: Bool = true
   var isLoading: Bool = false
   var parentMapItem: PortalItem
   @Published var map: Map?
   @Published var title: String?
   @Published var description: String?
   @Published var thumbnailURL: URL?
+  @Published var savedImage: Image?
 
   init(map: Map? = nil, mapItem: Item?, parentMapItem: PortalItem) {
     self.map = map

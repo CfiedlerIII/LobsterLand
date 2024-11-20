@@ -33,6 +33,7 @@ struct ExplorerMapView_Previews: PreviewProvider {
   static var previews: some View {
     ExplorerMapView<ExplorerRowViewModel>(
       viewModel: ExplorerRowViewModel(
+        isOnline: true, 
         mapArea: .init(
           portalItem: item
         ),
