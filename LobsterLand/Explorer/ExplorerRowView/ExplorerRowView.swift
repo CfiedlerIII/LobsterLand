@@ -13,27 +13,33 @@ struct ExplorerRowView<ViewModel>: View where ViewModel: ExplorerViewModelable {
 
   var body: some View {
     GeometryReader { geom in
-      HStack {
-        AsyncImage(url: viewModel.thumbnailURL) { image in
-          image
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(maxHeight: .infinity)
-        } placeholder: {
-          Color.gray
+      ZStack {
+        HStack {
+          AsyncImage(url: viewModel.thumbnailURL) { image in
+            image
+              .resizable()
+              .aspectRatio(contentMode: .fit)
+              .frame(maxHeight: .infinity)
+          } placeholder: {
+            Color.gray
+          }
+          VStack {
+            Text(viewModel.title ?? "--")
+              .font(.system(size: 18))
+              .modifier(Justify(direction: .left))
+            Text(viewModel.description ?? "--")
+              .lineLimit(3)
+              .truncationMode(.tail)
+              .font(.system(size: 14))
+              .foregroundStyle(Color(red: 0.4, green: 0.4, blue: 0.4))
+              .modifier(Justify(direction: .left))
+          }
+          Spacer()
         }
-        VStack {
-          Text(viewModel.title ?? "--")
-            .font(.system(size: 18))
-            .modifier(Justify(direction: .left))
-          Text(viewModel.description ?? "--")
-            .lineLimit(3)
-            .truncationMode(.tail)
-            .font(.system(size: 14))
-            .foregroundStyle(Color(red: 0.4, green: 0.4, blue: 0.4))
-            .modifier(Justify(direction: .left))
-        }
-        Spacer()
+        NavigationLink(destination: ExplorerMapView(viewModel: viewModel), label: {})
+          .opacity(0.0)
+          .buttonStyle(PlainButtonStyle())
+          .disabled(viewModel.map == nil)
       }
     }
   }

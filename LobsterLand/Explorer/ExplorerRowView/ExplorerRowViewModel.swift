@@ -11,6 +11,7 @@ import ArcGIS
 class ExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
 
   var mapArea: PreplannedMapArea
+  @Published var map: Map?
   @Published var title: String?
   @Published var description: String?
   @Published var thumbnailURL: URL?

@@ -15,13 +15,22 @@ struct ExploreMaineView: View {
     NavigationStack {
       List {
         Section(content: {
-          ExplorerRowView(viewModel: MaineExplorerRowViewModel(mapItem: viewModel.map.item))
+          ExplorerRowView(
+            viewModel: MaineExplorerRowViewModel(
+              map: viewModel.map,
+              mapItem: viewModel.map.item
+            )
+          )
         }, header: {
           Text("Web Map")
         })
         Section(content: {
           ForEach(viewModel.mapAreas, id: \.portalItem.id) { area in
-            ExplorerRowView(viewModel: ExplorerRowViewModel(mapArea: area))
+            ExplorerRowView(
+              viewModel: ExplorerRowViewModel(
+                mapArea: area
+              )
+            )
           }
         }, header: {
           Text("Map Areas")

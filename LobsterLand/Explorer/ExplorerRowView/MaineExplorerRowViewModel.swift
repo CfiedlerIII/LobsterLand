@@ -10,11 +10,13 @@ import ArcGIS
 
 class MaineExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
   var mapItem: Item?
+  @Published var map: Map?
   @Published var title: String?
   @Published var description: String?
   @Published var thumbnailURL: URL?
 
-  init(mapItem: Item?) {
+  init(map : Map? = nil, mapItem: Item?) {
+    self.map = map
     self.mapItem = mapItem
     self.title = mapItem?.title
     self.description = mapItem?.snippet
