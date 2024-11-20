@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import ArcGIS
 
 protocol ExplorerViewModelable: ObservableObject {
+  var map: Map? { get set }
   var title: String? { get set }
   var description: String? { get set }
   var thumbnailURL: URL? { get set }
