@@ -30,6 +30,7 @@ struct ExploreMaineView: View {
           ForEach(viewModel.mapAreas, id: \.portalItem.id) { area in
             ExplorerRowView(
               viewModel: ExplorerRowViewModel(
+                isOnline: viewModel.networkHandler.connected,
                 mapArea: area,
                 parentMapItem: viewModel.portalItem,
                 offlineMapTask: viewModel.offlineMapTask,

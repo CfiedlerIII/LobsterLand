@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import ArcGIS
 
 protocol ExplorerViewModelable: ObservableObject {
@@ -13,10 +14,12 @@ protocol ExplorerViewModelable: ObservableObject {
   var title: String? { get set }
   var description: String? { get set }
   var thumbnailURL: URL? { get set }
+  var isOnline: Bool { get set }
   var isLoading: Bool { get set }
   var parentMapItem: PortalItem { get set }
+  var savedImage: Image? { get set }
 
-  func downloadOfflineMap() async
+  func downloadOfflineMap() async throws
   func downloadedDataExists() -> Bool
   func removeDownloadedArea()
   func getDownloadedMapURL() -> URL?
