@@ -11,12 +11,6 @@ import ArcGIS
 class MapStorageService {
   static let shared = MapStorageService()
 
-  func generateDirectoryForArea(withID areaID: String) -> URL {
-    let docURL = getParentDirectory()
-    let dataPath = docURL.appendingPathComponent("\(areaID)")
-    return dataPath
-  }
-
   func getParentDirectory() -> URL {
     let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
     let documentsDirectory = paths[0]
@@ -25,42 +19,58 @@ class MapStorageService {
     return dataPath
   }
 
-  func getDirectoryForMetaDataIfNeeded(withID areaID: String) -> URL {
+  func getDirectoryForArea(withID areaID: String) -> URL {
+    let docURL = getParentDirectory()
+    let dataPath = docURL.appendingPathComponent("\(areaID)")
+    return dataPath
+  }
+
+  func getDirectoryForMetaData(withID areaID: String) -> URL {
     let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     let dataPath = documentsDirectory.appendingPathComponent("\(areaID).json")
     return dataPath
   }
 
   func createLocalBasemapDirectoryIfNeeded(areaID: String) -> URL? {
-    let dataPath = generateDirectoryForArea(withID: areaID)
+    let dataPath = getDirectoryForArea(withID: areaID)
     if !FileManager.default.fileExists(atPath: dataPath.path) {
       do {
         try FileManager.default.createDirectory(atPath: dataPath.path, withIntermediateDirectories: true, attributes: nil)
         return dataPath
       } catch {
-        print(error.localizedDescription)
+        print("Error 0x00: \(error.localizedDescription)")
         return nil
       }
     }
     return dataPath
   }
 
-  func removeDownloadedArea(withID areaID: String) -> Bool {
-    let dataPath = generateDirectoryForArea(withID: areaID)
-    let metaDataPath = getDirectoryForMetaDataIfNeeded(withID: areaID)
-    if FileManager.default.fileExists(atPath: dataPath.path) {
-      do {
-        try FileManager.default.removeItem(atPath: dataPath.path)
-        try FileManager.default.removeItem(atPath: metaDataPath.path)
-        return true
-      } catch {
-        print("Error 7: \(error.localizedDescription)")
-      }
+  func saveMetaData(metaData: PreplannedMapArea, toUrl url: URL) {
+    do {
+      let json = metaData.portalItem.toJSON()
+      let data = try JSONEncoder().encode(json)
+      try data.write(to: url)
+    } catch {
+      print("Error 0x01: \(error)")
     }
-    return false
   }
 
-  func fetchAllMetaData(portal: Portal) -> [PreplannedMapArea] {
+  func deleteFileAt(url: URL) throws {
+    if FileManager.default.fileExists(atPath: url.path) {
+      try FileManager.default.removeItem(atPath: url.path)
+    } else {
+      print("Error 0x02: No file to delete at URL \(url.absoluteURL)")
+    }
+  }
+
+  func removeDownloadedDataForArea(withID areaID: String) throws {
+    let dataPath = getDirectoryForArea(withID: areaID)
+    let metaDataPath = getDirectoryForMetaData(withID: areaID)
+    try deleteFileAt(url: dataPath)
+    try deleteFileAt(url: metaDataPath)
+  }
+
+  func getAllPreplannedMetaData(portal: Portal) -> [PreplannedMapArea] {
     let url = getParentDirectory()
     do {
       let fileNames = try FileManager.default.contentsOfDirectory(atPath: url.path())
@@ -72,61 +82,19 @@ class MapStorageService {
             let json = try JSONDecoder().decode(String.self, from: data)
             let metaData = PreplannedMapArea(portalItem: .init(json: json, portal: portal)!)
             metaDataFiles.append(metaData)
+          } catch {
+            print("Error 0x03: \(error)")
           }
         } else {
-          print("Error: Data was nil")
+          print("Error 0x04: MetaData contents was empty.")
         }
       }
+      print("Files Returned:")
+      print(metaDataFiles)
       return metaDataFiles
     } catch {
-      print("Error 6: \(error)")
+      print("Error 0x05: \(error)")
       return []
     }
-  }
-
-  func saveMetaData(metaData: PreplannedMapArea, toUrl url: URL) {
-    do {
-      let json = metaData.portalItem.toJSON()
-      let data = try JSONEncoder().encode(json)
-      try data.write(to: url)
-    } catch {
-      print("Error 8: \(error)")
-    }
-  }
-
-  func removeMetaDataAt(url: URL) {
-    if FileManager.default.fileExists(atPath: url.path) {
-      do {
-        try FileManager.default.removeItem(atPath: url.path)
-      } catch {
-        print("Error 9: \(error.localizedDescription)")
-      }
-    }
-  }
-
-  func removeFileAt(url: URL) {
-    if FileManager.default.fileExists(atPath: url.path) {
-      do {
-        try FileManager.default.removeItem(atPath: url.path)
-      } catch {
-        print("Error 10: \(error.localizedDescription)")
-      }
-    }
-  }
-
-  func fetchDownloadedMapArea(withID areaID: String) -> Bool {
-    let dataPath = generateDirectoryForArea(withID: areaID)
-    if FileManager.default.fileExists(atPath: dataPath.path) {
-      return true
-    }
-    return false
-  }
-
-  func dataExistsForMapArea(withID areaID: String) -> Bool {
-    let dataPath = generateDirectoryForArea(withID: areaID)
-    if FileManager.default.fileExists(atPath: dataPath.path) {
-      return true
-    }
-    return false
   }
 }

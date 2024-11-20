@@ -43,26 +43,10 @@ struct ExploreMaineView: View {
       }
       .environment(\.defaultMinListRowHeight, 80)
       .task {
-        await handleMapLoad()
+        await viewModel.handleMapLoad()
       }
       .navigationTitle("Explore Maine")
       .navigationBarTitleDisplayMode(.inline)
-    }
-  }
-
-  func handleMapLoad() async {
-    for await loadStatus in viewModel.map.$loadStatus {
-      if loadStatus == .loaded {
-        Task { @MainActor in
-          await viewModel.fetchPreplannedAreas(map: viewModel.map)
-        }
-      } else if loadStatus != .loading {
-        do {
-          try await viewModel.map.retryLoad()
-        } catch {
-          print("Error 11: \(error)")
-        }
-      }
     }
   }
 }
