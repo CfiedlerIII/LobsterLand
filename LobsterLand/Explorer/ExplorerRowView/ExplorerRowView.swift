@@ -40,7 +40,7 @@ struct ExplorerRowView<ViewModel>: View where ViewModel: ExplorerViewModelable {
           Spacer()
           if canDownload {
             Button(action: {
-              if viewModel.downloadedMap != nil || viewModel.downloadedDataExists() {
+              if viewModel.map != nil || viewModel.downloadedDataExists() {
                 viewModel.removeDownloadedArea()
               } else {
                 viewModel.isLoading = true
@@ -77,7 +77,7 @@ struct ExplorerRowView<ViewModel>: View where ViewModel: ExplorerViewModelable {
         NavigationLink(destination: ExplorerMapView(viewModel: viewModel), label: {})
           .opacity(0.0)
           .buttonStyle(PlainButtonStyle())
-          .disabled(viewModel.downloadedMap == nil)
+          .disabled(viewModel.map == nil)
       }
     }
   }

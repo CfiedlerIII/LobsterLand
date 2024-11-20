@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D8FF91B2CED3FB90072DB3D /* OfflineMapMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8FF91A2CED3FB90072DB3D /* OfflineMapMetaData.swift */; };
 		1D908F612CDEBAA1005BC3CA /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F602CDEBAA1005BC3CA /* MainApp.swift */; };
 		1D908F652CDEBAA2005BC3CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D908F642CDEBAA2005BC3CA /* Assets.xcassets */; };
 		1D908F682CDEBAA2005BC3CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D908F672CDEBAA2005BC3CA /* Preview Assets.xcassets */; };
@@ -44,7 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1D8FF91A2CED3FB90072DB3D /* OfflineMapMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineMapMetaData.swift; sourceTree = "<group>"; };
 		1D908F5D2CDEBAA1005BC3CA /* LobsterLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LobsterLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D908F602CDEBAA1005BC3CA /* MainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
 		1D908F642CDEBAA2005BC3CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 				1D908FA32CEC1A2D005BC3CA /* ExplorerRowViewModel.swift */,
 				1D908FA62CEC2045005BC3CA /* MaineExplorerRowViewModel.swift */,
 				1D908FA82CEC231F005BC3CA /* ExplorerViewModelable.swift */,
-				1D8FF91A2CED3FB90072DB3D /* OfflineMapMetaData.swift */,
 			);
 			path = ExplorerRowView;
 			sourceTree = "<group>";
@@ -324,7 +321,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D8FF91B2CED3FB90072DB3D /* OfflineMapMetaData.swift in Sources */,
 				1D908F8F2CE3ABB9005BC3CA /* ExploreMaineView.swift in Sources */,
 				1D908F9E2CEC1697005BC3CA /* Justify.swift in Sources */,
 				1D908FAD2CED1166005BC3CA /* ExplorerMapView.swift in Sources */,

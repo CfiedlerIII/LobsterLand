@@ -12,14 +12,14 @@ class MaineExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
 
   var mapItem: Item?
   var isLoading: Bool = false
-  var downloadedMap: Map? = nil
   var parentMapItem: PortalItem
+  @Published var map: Map?
   @Published var title: String?
   @Published var description: String?
   @Published var thumbnailURL: URL?
 
-
-  init(mapItem: Item?, parentMapItem: PortalItem) {
+  init(map: Map? = nil, mapItem: Item?, parentMapItem: PortalItem) {
+    self.map = map
     self.mapItem = mapItem
     self.title = mapItem?.title
     self.description = mapItem?.snippet

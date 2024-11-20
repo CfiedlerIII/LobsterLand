@@ -14,8 +14,8 @@ class ExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
   var offlineMapTask: OfflineMapTask?
   var mapURL: URL?
   var parentMapItem: PortalItem
-  @Published var downloadedMap: Map?
   @Published var isLoading: Bool = false
+  @Published var map: Map?
   @Published var title: String?
   @Published var description: String?
   @Published var thumbnailURL: URL?
@@ -90,7 +90,7 @@ class ExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
         }
       } else {
         // Otherwise, displays the map.
-        self.downloadedMap = output.offlineMap
+        self.map = output.offlineMap
         saveAreaMetaData(mapArea: mapArea)
       }
       isLoading = false
@@ -135,7 +135,7 @@ class ExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
       return
     }
     if MapStorageService.shared.removeDownloadedArea(withID: areaID) {
-      self.downloadedMap = nil
+      self.map = nil
     }
   }
 
@@ -152,7 +152,7 @@ class ExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
     do {
       let mobileMapPackage = MobileMapPackage(fileURL: offlineMapURL)
       try await mobileMapPackage.load()
-      downloadedMap = mobileMapPackage.maps.first
+      self.map = mobileMapPackage.maps.first
     } catch {
       print("Error 4: \(error)")
     }

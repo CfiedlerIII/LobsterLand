@@ -15,13 +15,27 @@ struct ExploreMaineView: View {
     NavigationStack {
       List {
         Section(content: {
-          ExplorerRowView(viewModel: MaineExplorerRowViewModel(mapItem: viewModel.map.item, parentMapItem: viewModel.portalItem), canDownload: false)
+          ExplorerRowView(
+            viewModel: MaineExplorerRowViewModel(
+              map: viewModel.map,
+              mapItem: viewModel.map.item,
+              parentMapItem: viewModel.portalItem
+            ),
+            canDownload: false
+          )
         }, header: {
           Text("Web Map")
         })
         Section(content: {
           ForEach(viewModel.mapAreas, id: \.portalItem.id) { area in
-            ExplorerRowView(viewModel: ExplorerRowViewModel(mapArea: area, parentMapItem: viewModel.portalItem, offlineMapTask: viewModel.offlineMapTask, mapURL: viewModel.basemapURL))
+            ExplorerRowView(
+              viewModel: ExplorerRowViewModel(
+                mapArea: area,
+                parentMapItem: viewModel.portalItem,
+                offlineMapTask: viewModel.offlineMapTask,
+                mapURL: viewModel.basemapURL
+              )
+            )
           }
         }, header: {
           Text("Map Areas")

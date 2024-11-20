@@ -11,12 +11,16 @@ import ArcGIS
 struct ExplorerMapView<ViewModel>: View where ViewModel: ExplorerViewModelable {
   @ObservedObject var viewModel: ViewModel
 
+  init(viewModel: ViewModel) {
+    self.viewModel = viewModel
+  }
+
   var body: some View {
     NavigationStack {
       if let safeMap = viewModel.map {
         MapView(map: safeMap)
           .ignoresSafeArea(edges: [.leading, .trailing, .bottom])
-      } else {
+      }else {
         Text("Failed to load MapView.")
       }
 
@@ -35,8 +39,7 @@ struct ExplorerMapView_Previews: PreviewProvider {
       viewModel: ExplorerRowViewModel(
         mapArea: .init(
           portalItem: item
-        ),
-        parentMapItem: item
+        )
       )
     )
   }
