@@ -105,10 +105,10 @@ class ExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
       print("Error: Failed to generate MetaData directory")
       return
     }
-    let path = MapStorageService.shared.getDirectoryForMetaDataIfNeeded(withID: mapID)
+    let path = MapStorageService.shared.getDirectoryForMetaData(withID: mapID)
     if FileManager.default.fileExists(atPath: path.path()) {
       print("Removing MetaData before saving")
-      MapStorageService.shared.removeFileAt(url: path)
+      MapStorageService.shared.deleteFileAt(url: path)
     }
     MapStorageService.shared.saveMetaData(metaData: mapArea, toUrl: path)
   }
@@ -117,7 +117,7 @@ class ExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
     guard let areaID = mapArea.portalItem.id?.rawValue else {
       return false
     }
-    let path = MapStorageService.shared.generateDirectoryForArea(withID: areaID)
+    let path = MapStorageService.shared.getDirectoryForArea(withID: areaID)
     if FileManager.default.fileExists(atPath: path.path) {
       do {
         let fileNames = try FileManager.default.contentsOfDirectory(atPath: path.absoluteString)
@@ -134,16 +134,14 @@ class ExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
     guard let areaID = mapArea.portalItem.id?.rawValue else {
       return
     }
-    if MapStorageService.shared.removeDownloadedArea(withID: areaID) {
-      self.map = nil
-    }
+    MapStorageService.shared.removeDownloadedDataForArea(withID: areaID)
   }
 
   func getDownloadedMapURL() -> URL? {
     guard let areaID = mapArea.portalItem.id?.rawValue else {
       return nil
     }
-    let mapURL = MapStorageService.shared.generateDirectoryForArea(withID: areaID)
+    let mapURL = MapStorageService.shared.getDirectoryForArea(withID: areaID)
     return mapURL
   }
 

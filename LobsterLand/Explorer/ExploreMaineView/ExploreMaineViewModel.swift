@@ -56,6 +56,23 @@ class ExploreMaineViewModel: ObservableObject {
 
   @MainActor
   func fetchDownloadedAreas(map: Map) async {
-    self.mapAreas = MapStorageService.shared.fetchAllMetaData(portal: .arcGISOnline(connection: .anonymous))
+    self.mapAreas = MapStorageService.shared.getAllPreplannedMetaData(portal: .arcGISOnline(connection: .anonymous))
+  }
+
+  @MainActor
+  func handleMapLoad() async {
+    for await loadStatus in map.$loadStatus {
+      if loadStatus == .loaded {
+        Task { @MainActor in
+          await fetchPreplannedAreas(map: map)
+        }
+      } else if loadStatus != .loading {
+        do {
+          try await map.retryLoad()
+        } catch {
+          print("Error 0x0000: \(error)")
+        }
+      }
+    }
   }
 }
