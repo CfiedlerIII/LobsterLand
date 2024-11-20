@@ -48,7 +48,7 @@ struct ExplorerRowView<ViewModel>: View where ViewModel: ExplorerViewModelable {
                   await viewModel.downloadOfflineMap()
                 }            }
             }, label: {
-              if viewModel.downloadedDataExists() {
+              if viewModel.map != nil {
                 Image(systemName: "trash")
                   .resizable()
                   .scaledToFit()
