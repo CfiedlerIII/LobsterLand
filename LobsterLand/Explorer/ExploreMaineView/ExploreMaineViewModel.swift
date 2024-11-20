@@ -10,6 +10,7 @@ import ArcGIS
 import Network
 
 class ExploreMaineViewModel: ObservableObject {
+  @ObservedObject var networkHandler = NetworkHandler()
   @Published var map: Map
   @Published var mapAreas: [PreplannedMapArea] = []
   var offlineMapTask: OfflineMapTask?
@@ -23,25 +24,14 @@ class ExploreMaineViewModel: ObservableObject {
     let item = PortalItem(portal: .arcGISOnline(connection: .anonymous), id: itemID)
     self.portalItem = item
     self.map = Map(item: item)
-    monitor.pathUpdateHandler = { path in
-      if path.status == .satisfied {
-        print("Internet connection is available.")
-        // Perform actions when internet is available
-        self.mapLoadTask?.cancel()
-        self.mapLoadTask = Task { () -> Void in
-          await self.fetchPreplannedAreas(map: self.map)
-        }
-      } else {
-        print("Internet connection is not available.")
-        // Perform actions when internet is not available
-        self.mapLoadTask?.cancel()
-        self.mapLoadTask = Task { () -> Void in
-          await self.fetchDownloadedAreas(map: self.map)
-        }
+    networkHandler.checkConnection()
+    if networkHandler.connected {
+      self.mapLoadTask = Task { @MainActor in
+        await self.handleMapLoad()
       }
+    } else {
+      self.mapLoadTask?.cancel()
     }
-    let queue = DispatchQueue(label: "NetworkMonitor")
-    monitor.start(queue: queue)
   }
 
   @MainActor
@@ -59,22 +49,28 @@ class ExploreMaineViewModel: ObservableObject {
   @MainActor
   func fetchDownloadedAreas(map: Map) async {
     self.mapAreas = MapStorageService.shared.getAllPreplannedMetaData(portal: .arcGISOnline(connection: .anonymous))
+    self.basemapURL = map.url
   }
 
   @MainActor
   func handleMapLoad() async {
-    for await loadStatus in map.$loadStatus {
-      if loadStatus == .loaded {
-        Task {
-          await fetchPreplannedAreas(map: map)
-        }
-      } else if loadStatus != .loading {
-        do {
-          try await map.retryLoad()
-        } catch {
-          print("Error 0x07: \(error)")
+    if networkHandler.connected {
+      for await loadStatus in map.$loadStatus {
+        if loadStatus == .loaded {
+          self.mapLoadTask = Task {
+            await fetchPreplannedAreas(map: map)
+          }
+        } else if loadStatus != .loading {
+          do {
+            try await map.retryLoad()
+          } catch {
+            print("Error 0x07: \(error)")
+            await fetchDownloadedAreas(map: map)
+          }
         }
       }
+    } else {
+      await fetchDownloadedAreas(map: map)
     }
   }
 }

@@ -71,7 +71,7 @@ class MapStorageService {
   }
 
   func getAllPreplannedMetaData(portal: Portal) -> [PreplannedMapArea] {
-    let url = getParentDirectory()
+    let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     do {
       let fileNames = try FileManager.default.contentsOfDirectory(atPath: url.path())
       var metaDataFiles: [PreplannedMapArea] = []

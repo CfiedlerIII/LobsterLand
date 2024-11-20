@@ -24,7 +24,15 @@ struct ExplorerRowView<ViewModel>: View where ViewModel: ExplorerViewModelable {
               .aspectRatio(contentMode: .fit)
               .frame(maxHeight: .infinity)
           } placeholder: {
-            Color.gray
+            // This offline thumbnail does not currently work :(
+            if let savedImage = viewModel.savedImage {
+              savedImage
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(maxHeight: .infinity)
+            } else {
+              Color.gray
+            }
           }
           VStack {
             Text(viewModel.title ?? "--")
@@ -43,10 +51,18 @@ struct ExplorerRowView<ViewModel>: View where ViewModel: ExplorerViewModelable {
               if viewModel.map != nil || viewModel.downloadedDataExists() {
                 viewModel.removeDownloadedArea()
               } else {
-                viewModel.isLoading = true
-                Task {
-                  await viewModel.downloadOfflineMap()
-                }            }
+                if viewModel.isOnline {
+                  viewModel.isLoading = true
+                  Task {
+                    do {
+                      try await viewModel.downloadOfflineMap()
+                    } catch {
+                      print("Error 0x0e: \(error)")
+                      viewModel.isLoading = false
+                    }
+                  }
+                }
+              }
             }, label: {
               if viewModel.map != nil {
                 Image(systemName: "trash")
@@ -90,6 +106,7 @@ struct ExplorerRowView_Previews: PreviewProvider {
   static var previews: some View {
     ExplorerRowView(
       viewModel: ExplorerRowViewModel(
+        isOnline: true, 
         mapArea: .init(
           portalItem: item
         ),
