@@ -55,23 +55,19 @@ class MapStorageService {
     }
   }
 
-  func deleteFileAt(url: URL) {
+  func deleteFileAt(url: URL) throws {
     if FileManager.default.fileExists(atPath: url.path) {
-      do {
-        try FileManager.default.removeItem(atPath: url.path)
-      } catch {
-        print("Error 0x02: \(error.localizedDescription)")
-      }
+      try FileManager.default.removeItem(atPath: url.path)
     } else {
-      print("Error 0x03: No file to delete at URL \(url.absoluteURL).")
+      print("Error 0x02: No file to delete at URL \(url.absoluteURL)")
     }
   }
 
-  func removeDownloadedDataForArea(withID areaID: String) {
+  func removeDownloadedDataForArea(withID areaID: String) throws {
     let dataPath = getDirectoryForArea(withID: areaID)
     let metaDataPath = getDirectoryForMetaData(withID: areaID)
-    deleteFileAt(url: dataPath)
-    deleteFileAt(url: metaDataPath)
+    try deleteFileAt(url: dataPath)
+    try deleteFileAt(url: metaDataPath)
   }
 
   func getAllPreplannedMetaData(portal: Portal) -> [PreplannedMapArea] {
@@ -87,17 +83,17 @@ class MapStorageService {
             let metaData = PreplannedMapArea(portalItem: .init(json: json, portal: portal)!)
             metaDataFiles.append(metaData)
           } catch {
-            print("Error 0x04: \(error)")
+            print("Error 0x03: \(error)")
           }
         } else {
-          print("Error 0x05: MetaData contents was empty.")
+          print("Error 0x04: MetaData contents was empty.")
         }
       }
-      print("FIles Returned:")
+      print("Files Returned:")
       print(metaDataFiles)
       return metaDataFiles
     } catch {
-      print("Error 0x06: \(error)")
+      print("Error 0x05: \(error)")
       return []
     }
   }

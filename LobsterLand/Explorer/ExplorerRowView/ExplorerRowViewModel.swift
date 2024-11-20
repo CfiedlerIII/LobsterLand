@@ -48,11 +48,11 @@ class ExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
         case .loading:
           break
         case .failed:
-          print("Error 0x09: Failed to fetch load status.")
+          print("Error 0x08: Failed to fetch load status.")
         }
       }
     } catch {
-      print("Error 0x0a: \(error)")
+      print("Error 0x09: \(error)")
     }
   }
 
@@ -60,11 +60,11 @@ class ExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
   func downloadOfflineMap() async {
     do {
       guard let parameters = try await offlineMapTask?.makeDefaultDownloadPreplannedOfflineMapParameters(preplannedMapArea: mapArea),
-      let mapID = self.mapArea.portalItem.id?.rawValue,
-          let directory = MapStorageService.shared.createLocalBasemapDirectoryIfNeeded(areaID: mapID) else {
-            print("Error 0x0b: OfflineMapTask was nil")
-            isLoading = false
-            return
+            let mapID = self.mapArea.portalItem.id?.rawValue,
+            let directory = MapStorageService.shared.createLocalBasemapDirectoryIfNeeded(areaID: mapID) else {
+        print("Error 0x0a: OfflineMapTask was nil")
+        isLoading = false
+        return
       }
       // Configures the parameters.
       parameters.continuesOnErrors = false
@@ -74,7 +74,7 @@ class ExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
       // Starts the preplanned map job and gets its output.
 
       guard let downloadJob = offlineMapTask?.makeDownloadPreplannedOfflineMapJob(parameters: parameters, downloadDirectory: directory) else {
-        print("Error 0x0c: Failed to create download job.")
+        print("Error 0x0b: Failed to create download job.")
         isLoading = false
         return
       }
@@ -83,10 +83,10 @@ class ExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
       // Prints the errors if any.
       if output.hasErrors {
         output.layerErrors.forEach { layerError in
-          print("Error 0x0d: Taking this layer offline: \(layerError.key.layer.name)")
+          print("Error 0x0c: Taking this layer offline: \(layerError.key.layer.name)")
         }
         output.tableErrors.forEach { tableError in
-          print("Error 0x0e: Taking this table offline: \(tableError.key.featureTable.displayName)")
+          print("Error 0x0d: Taking this table offline: \(tableError.key.featureTable.displayName)")
         }
       } else {
         // Otherwise, displays the map.
@@ -95,19 +95,23 @@ class ExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
       }
       isLoading = false
     } catch {
-      print("Error 0x0f: \(error)")
+      print("Error 0x0e: \(error)")
       isLoading = false
     }
   }
 
   func saveAreaMetaData(mapArea: PreplannedMapArea) {
     guard let mapID = mapArea.portalItem.id?.rawValue else {
-      print("Error 0x10: Failed to generate MetaData directory")
+      print("Error 0x0f: Failed to generate MetaData directory")
       return
     }
     let path = MapStorageService.shared.getDirectoryForMetaData(withID: mapID)
     if FileManager.default.fileExists(atPath: path.path()) {
-      MapStorageService.shared.deleteFileAt(url: path)
+      do {
+        try MapStorageService.shared.deleteFileAt(url: path)
+      } catch {
+        print("Error 0x10: \(error)")
+      }
     }
     MapStorageService.shared.saveMetaData(metaData: mapArea, toUrl: path)
   }
@@ -135,12 +139,17 @@ class ExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
       print("Error 0x13: Failed to get Item.ID from mapArea.")
       return
     }
-    MapStorageService.shared.removeDownloadedDataForArea(withID: areaID)
+    do {
+      try MapStorageService.shared.removeDownloadedDataForArea(withID: areaID)
+      self.map = nil
+    } catch {
+      print("Error 0x14: \(error)")
+    }
   }
 
   func getDownloadedMapURL() -> URL? {
     guard let areaID = mapArea.portalItem.id?.rawValue else {
-      print("Error 0x14: Failed to get Item.ID from mapArea.")
+      print("Error 0x15: Failed to get Item.ID from mapArea.")
       return nil
     }
     let mapURL = MapStorageService.shared.getDirectoryForArea(withID: areaID)
@@ -154,7 +163,7 @@ class ExplorerRowViewModel: ExplorerViewModelable, ObservableObject {
       try await mobileMapPackage.load()
       self.map = mobileMapPackage.maps.first
     } catch {
-      print("Error 0x15: \(error)")
+      print("Error 0x16: \(error)")
     }
   }
 }

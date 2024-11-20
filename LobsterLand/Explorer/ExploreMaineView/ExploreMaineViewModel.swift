@@ -13,6 +13,7 @@ class ExploreMaineViewModel: ObservableObject {
   @Published var map: Map
   @Published var mapAreas: [PreplannedMapArea] = []
   var offlineMapTask: OfflineMapTask?
+  var mapLoadTask: Task<(), Never>?
   var basemapURL: URL?
   var portalItem: PortalItem
   private var monitor = NWPathMonitor()
@@ -26,14 +27,15 @@ class ExploreMaineViewModel: ObservableObject {
       if path.status == .satisfied {
         print("Internet connection is available.")
         // Perform actions when internet is available
-        Task {
+        self.mapLoadTask?.cancel()
+        self.mapLoadTask = Task { () -> Void in
           await self.fetchPreplannedAreas(map: self.map)
         }
       } else {
         print("Internet connection is not available.")
         // Perform actions when internet is not available
-        self.offlineMapTask?.cancelLoad()
-        Task {
+        self.mapLoadTask?.cancel()
+        self.mapLoadTask = Task { () -> Void in
           await self.fetchDownloadedAreas(map: self.map)
         }
       }
@@ -46,11 +48,11 @@ class ExploreMaineViewModel: ObservableObject {
   func fetchPreplannedAreas(map: Map) async {
     self.offlineMapTask = OfflineMapTask(onlineMap: map)
     do {
-      let areas = try await offlineMapTask?.preplannedMapAreas
+      let areas = try await self.offlineMapTask?.preplannedMapAreas
       self.mapAreas = areas ?? []
       self.basemapURL = map.url
     } catch {
-      print("Error 0x07: \(error)")
+      print("Error 0x06: \(error)")
     }
   }
 
@@ -70,7 +72,7 @@ class ExploreMaineViewModel: ObservableObject {
         do {
           try await map.retryLoad()
         } catch {
-          print("Error 0x08: \(error)")
+          print("Error 0x07: \(error)")
         }
       }
     }
