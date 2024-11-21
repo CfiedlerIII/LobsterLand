@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D8FF9232CEE69A20072DB3D /* ArcGIS in Frameworks */ = {isa = PBXBuildFile; productRef = 1D8FF9222CEE69A20072DB3D /* ArcGIS */; };
 		1D8FF9252CEE7FF40072DB3D /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8FF9242CEE7FF40072DB3D /* NetworkHandler.swift */; };
+		1D8FF9282CEEFC0B0072DB3D /* ArcGIS in Frameworks */ = {isa = PBXBuildFile; productRef = 1D8FF9272CEEFC0B0072DB3D /* ArcGIS */; };
 		1D908F612CDEBAA1005BC3CA /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D908F602CDEBAA1005BC3CA /* MainApp.swift */; };
 		1D908F652CDEBAA2005BC3CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D908F642CDEBAA2005BC3CA /* Assets.xcassets */; };
 		1D908F682CDEBAA2005BC3CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D908F672CDEBAA2005BC3CA /* Preview Assets.xcassets */; };
@@ -70,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D8FF9232CEE69A20072DB3D /* ArcGIS in Frameworks */,
+				1D8FF9282CEEFC0B0072DB3D /* ArcGIS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +205,7 @@
 			);
 			name = LobsterLand;
 			packageProductDependencies = (
-				1D8FF9222CEE69A20072DB3D /* ArcGIS */,
+				1D8FF9272CEEFC0B0072DB3D /* ArcGIS */,
 			);
 			productName = LobsterLand;
 			productReference = 1D908F5D2CDEBAA1005BC3CA /* LobsterLand.app */;
@@ -280,7 +280,7 @@
 			);
 			mainGroup = 1D908F542CDEBAA1005BC3CA;
 			packageReferences = (
-				1D8FF9212CEE69A20072DB3D /* XCRemoteSwiftPackageReference "arcgis-maps-sdk-swift" */,
+				1D8FF9262CEEFC0B0072DB3D /* XCRemoteSwiftPackageReference "arcgis-maps-sdk-swift" */,
 			);
 			productRefGroup = 1D908F5E2CDEBAA1005BC3CA /* Products */;
 			projectDirPath = "";
@@ -668,7 +668,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1D8FF9212CEE69A20072DB3D /* XCRemoteSwiftPackageReference "arcgis-maps-sdk-swift" */ = {
+		1D8FF9262CEEFC0B0072DB3D /* XCRemoteSwiftPackageReference "arcgis-maps-sdk-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Esri/arcgis-maps-sdk-swift";
 			requirement = {
@@ -679,9 +679,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1D8FF9222CEE69A20072DB3D /* ArcGIS */ = {
+		1D8FF9272CEEFC0B0072DB3D /* ArcGIS */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1D8FF9212CEE69A20072DB3D /* XCRemoteSwiftPackageReference "arcgis-maps-sdk-swift" */;
+			package = 1D8FF9262CEEFC0B0072DB3D /* XCRemoteSwiftPackageReference "arcgis-maps-sdk-swift" */;
 			productName = ArcGIS;
 		};
 /* End XCSwiftPackageProductDependency section */
